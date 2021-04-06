@@ -10,16 +10,17 @@ const LoginForm = ({ isLoggedIn, error }) => {
         isLoggedIn(description);
     }
     return (
-        <form onSubmit={handleOnSubmit}>
-            <div className="form-inner">
+        <form className="form" onSubmit={handleOnSubmit}>
+            <div className="form__form-inner">
                 <h2>Login</h2>
-                <div className="from-group">
+                {(error !== '') ? (<div className="error">{error}</div>) : ''}
+                <div className="form-group">
                     <label className="name">Name:</label>
-                    <input type="text" name="name" id="name" onChange={e => setDescription({...description, name:e.target.value})}/>
+                    <input className="__input"type="text" name="name" id="name" onChange={e => setDescription({...description, name:e.target.value})} value={description.name}/>
                 </div>
-                <div className="from-group">
+                <div className="form-group">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" id="password"/>
+                    <input type="password" name="password" id="password" onChange={e => setDescription({...description, password:e.target.value})} value={description.password}/>
                 </div>
                 <input type="submit" value="Login"/>
             </div>
@@ -28,21 +29,3 @@ const LoginForm = ({ isLoggedIn, error }) => {
 }
 
 export default LoginForm;
-
-{/* <input
-placeholder="Enter youre login"
-className="login-form__input"
-type="text"
-
->
-</input>
-<input
-placeholder="Enter youre password"
-className="login-form__input"
-type="password"
->
-</input>
-<button 
-className="login-form__btn"
-
->Login</button> */}

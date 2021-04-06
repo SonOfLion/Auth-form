@@ -13,22 +13,30 @@ const App = () => {
 
 
     const isLoggedIn = details => {
-        console.log(details)
+
+        if(details.name === adminUser.name && details.password === adminUser.password) {
+            setUser({
+                name:details.name,
+                password:details.password,
+            })
+        }else {
+            setError("You entered wrong password!")
+        }
     }
 
     const logout = () => {
-        console.log('logout')
+        setUser({name:'',password:''})
     }
 
     return (
-        <form className="app">
+        <div className="app">
             {(user.name !== '') ? (
                 <div className="welcome">
-                    <h2>Welcome<span>{user.name}</span></h2>
-                    <button >Logout</button>
+                    <h2>Welcome&ensp;<span>{user.name}</span></h2>
+                    <button onClick={logout}>Logout</button>
                 </div>
             ) : <LoginForm isLoggedIn={isLoggedIn} error={error}/>}
-        </form>
+        </div>
     )
 }
 
