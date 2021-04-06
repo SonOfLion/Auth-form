@@ -12,11 +12,13 @@
 .login-form {
     display: flex;
     flex-direction:column;
-    height: 350px;
+    justify-content: center;
+    height: 200px;
     width:300px;
     border: 3px solid black;
     border-radius: 5px;
     padding: 5px;
+    background: aqua;
 
     &__input {
         width: 100%;
@@ -36,9 +38,9 @@
         height: 30px;
         width: 100%;
         cursor: pointer;
-        margin-top: 225px;
         border: none;
         outline: none;
+        border-radius: 10px;
     }
 }
 
