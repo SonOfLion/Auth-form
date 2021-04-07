@@ -35,7 +35,10 @@ const App = () => {
                     <h2>Welcome&ensp;<span>{user.name}</span></h2>
                     <button onClick={logout}>Logout</button>
                 </div>
-            ) : <LoginForm isLoggedIn={isLoggedIn} error={error}/>}
+            ) : <LoginForm 
+                    isLoggedIn={isLoggedIn} 
+                    error={error}
+                />}
         </div>
     )
 }
