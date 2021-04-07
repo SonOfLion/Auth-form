@@ -1,46 +1,49 @@
 import React, { useState } from 'react';
 import LoginForm from './LoginForm';
 
-
 const App = () => {
     const adminUser = {
-        name:'admin',
-        password:'admin'
+        name: 'admin',
+        password: 'admin'
     };
 
-    const[user,setUser] = useState({name:'',password:''})
-    const[error,setError] = useState('');
+    const [user, setUser] = useState({ name: '', password: '' })
+    const [error, setError] = useState('');
 
 
     const isLoggedIn = details => {
-
-        if(details.name === adminUser.name && details.password === adminUser.password) {
+        if (details.name === adminUser.name && details.password === adminUser.password) {
             setUser({
-                name:details.name,
-                password:details.password,
+                name: details.name,
+                password: details.password,
             })
-        }else {
-            setError("You entered wrong password!")
         }
+        setError("You entered wrong password!")
     }
 
     const logout = () => {
-        setUser({name:'',password:''})
+        setUser({ name: '', password: '' })
     }
 
     return (
         <div className="app">
-            {(user.name !== '') ? (
-                <div className="welcome">
-                    <h2>Welcome&ensp;<span>{user.name}</span></h2>
-                    <button onClick={logout}>Logout</button>
-                </div>
-            ) : <LoginForm 
-                    isLoggedIn={isLoggedIn} 
-                    error={error}
-                />}
+            {(user.name !== '') ? '' : (<LoginForm isLoggedIn={isLoggedIn} error={error} />)}
         </div>
     )
 }
 
 export default App;
+
+// (user.name !== '') ? (
+//     <div className="welcome">
+//         <h2>Welcome&ensp;<span>{user.name}</span></h2>
+//         <button 
+//             onClick={logout}
+//         >
+//             Logout
+//         </button>
+//     </div>
+// ) : <LoginForm 
+//         isLoggedIn={isLoggedIn} 
+//         error={error}
+//     />

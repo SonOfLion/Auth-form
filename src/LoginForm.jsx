@@ -1,17 +1,49 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import { handleRequest, handleReq } from './gateWay';
+
+const baseUrl = 'https://addpi.cloudareus.com:8080/';
 
 const LoginForm = ({ isLoggedIn, error }) => {
-    const [description, setDescription] = useState({ name: '', password: '' })
+    const [description, setDescription] = useState({ name: '', password: '' });
+
+    // function saveToken(token) {
+    //     sessionStorage.setItem('tokenData', JSON.stringify(token));
+    // }
+
+    // function getTokenData(login, password) {
+    //     return fetch(`${baseUrl}`, {
+    //         method: 'POST',
+    //         credentials: 'include',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             username: "admin",
+    //             password: "admin",
+    //         }),
+    //     })
+    //         .then((res) => {
+    //             if (res.status === 200) {
+    //                 const tokenData = res.json();
+    //                 saveToken(JSON.stringify(tokenData)); // сохраняем полученный токен в sessionStorage, с помощью функции, заданной ранее
+    //                 return Promise.resolve()
+    //             }
+    //             return Promise.reject();
+    //         });
+    // }
+
+
 
     const handleOnSubmit = e => {
         e.preventDefault();
 
         isLoggedIn(description);
     }
+
     return (
-        <form 
-            className="form" 
+        <form
+            className="form"
             onSubmit={handleOnSubmit}
         >
             <div className="form__form-inner">
@@ -21,7 +53,7 @@ const LoginForm = ({ isLoggedIn, error }) => {
                     <label className="name">Name:</label>
                     <input
                         className="__input"
-                        type="text" 
+                        type="text"
                         name="name"
                         id="name"
                         onChange={e => setDescription({ ...description, name: e.target.value })}
@@ -41,7 +73,12 @@ const LoginForm = ({ isLoggedIn, error }) => {
                 <input
                     type="submit"
                     value="Login"
+                    onClick={handleRequest}
                 />
+                <button
+                    className="btn"
+                    onClick={handleReq}
+                >Show</button>
             </div>
         </form>
     )
